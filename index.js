@@ -22,4 +22,8 @@ const io = SocketIO(server);
 //Establecemos la conexion
 io.on("connection", (socket) => {
   console.log("Se ha conectado alguien", socket.id);
+  socket.on('chat:message', (data) => {
+    console.log(data);
+    io.sockets.emit('chat:message', data)
+  })
 });
